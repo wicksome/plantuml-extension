@@ -1,0 +1,54 @@
+:root {
+	--github-green: #28a745;
+	--github-red: #cb2431;
+}
+
+html:not(.is-edgium) {
+	min-width: 550px;
+	overflow-x: hidden;
+}
+
+h2,
+h3,
+h4 {
+	width: 100%;
+	margin-top: 0;
+	margin-bottom: 0.25rem;
+	font-weight: bold;
+}
+
+hr {
+	margin: 1rem 0;
+}
+
+.small {
+	font-size: 0.875em;
+}
+
+label {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+	margin: 0.5em 0;
+}
+
+input:not([type='checkbox']):not(:placeholder-shown):valid {
+	color: var(--github-green);
+	border: 1px solid !important; /* stylelint-disable-line declaration-no-important */
+}
+
+input:not([type='checkbox']):invalid {
+	color: var(--github-red);
+	border: 1px solid !important; /* stylelint-disable-line declaration-no-important */
+}
+
+.wrapper-class input[type="radio"] {
+	width: 15px;
+	margin-right: 3px;
+}
+
+.wrapper-class label {
+	display: inline;
+	margin-left: 5px;
+}

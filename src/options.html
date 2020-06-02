@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<title>Options</title>
+<link rel="stylesheet" href="chrome://global/skin/in-content/common.css" />
+<link rel="stylesheet" href="webext-base.css" />
+<link rel="stylesheet" href="options.css" />
+<form id="options-form">
+	<section>
+		<h2>Profile</h2>
+		<p class="small">Specify the profile for each domain.</p>
+		<div class="wrapper-class">
+			<label>
+				<input type="radio" name="profile" value="github"/>GitHub
+			</label>
+			<label>
+				<input type="radio" name="profile" value="gitlab"/>GitLab
+			</label>
+			<label>
+				<input type="radio" name="profile" value="bitbucket"/>Bitbucket
+			</label>
+			<label>
+				<input type="radio" name="profile" value="zenhub"/>ZenHub
+			</label>
+			<label>
+				<input type="radio" name="profile" value="gitpitch"/>GitPitch
+			</label>
+			<label>
+				<input type="radio" name="profile" value="default"/>Etc
+			</label>
+		</div>
+	</section>
+	<hr>
+	<section>
+		<h2>Base URL</h2>
+		<label>
+			<p class="small">Specify the base URL to your PlantUML server.</p>
+			<input type="url" name="baseUrl" placeholder="e.g. https://www.plantuml.com/plantuml" />
+			<p class="small">
+				By default, PlantUML Extension uses
+				<a href="https://github.com/plantuml/plantuml-server" target="popup">PlantUML server</a>
+				deployed to
+				<a href="https://www.plantuml.com/plantuml" target="popup">this</a>.<br />
+				· https://www.plantuml.com/plantuml/img/ <i>(default)</i><br />
+				· https://www.plantuml.com/plantuml/svg/<br />
+				· https://any-plantuml-server.example.com:8080/img/<br />
+			</p>
+		</label>
+	</section>
+</form>
+
+<script src="browser-polyfill.min.js"></script>
+<script src="options.js"></script>
