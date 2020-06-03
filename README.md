@@ -1,15 +1,21 @@
-# PlantUML Extension
+#  PlantUML Extension
 
 > This is a Google Chrome extension that replace PlantUML code blocks into preview images.
 
-[Chrome web store](#)
+[link-cws]: https://chrome.google.com/webstore/detail/plantuml-extension/jbdmdkcjhnceacdkahhpfpijcohplgaj "Version published on Chrome Web Store"
+
+## Install
+
+- [**Chrome** extension][link-cws] [<img valign="middle" src="https://img.shields.io/chrome-web-store/v/jbdmdkcjhnceacdkahhpfpijcohplgaj.svg?label=%20">][link-cws]
+
+The chrome version also works in Opera (using [this](https://addons.opera.com/en/extensions/details/download-chrome-extension-9/)) and Edge.
 
 ## Features
 
 - Preview
   - [x] GitHub Issues
   - [x] ZenHub Issues
-- [x] Support for GitHub Enterprise
+- [x] [Support for GitHub Enterprise](#support-for-github-enterprise)
 - [x] Support environment setting for each domain.
 - [ ] Support `!include` directive
 - [ ] Support rendering of `.pu`/`.puml`/`.plantuml` file
@@ -68,11 +74,22 @@ foo
 bar
 baz
 ```
+## Support for GitHub Enterprise
 
-## Using another PlantUML server by domain
+If you're a GitHub Enterprise user, visit your Enterprise site, right-click on _the extension’s icon in the toolbar_ and select **Enable PlantUML Extension on this domain.**
+
+<p align="center">
+  <img src="images/enable-github-enterprise.png">
+</p>
+
+## Using another options(PlantUML server) by domain
 
 By default, this extension uses [PlantUML server](https://github.com/plantuml/plantuml-server)
 deployed to `https://www.plantuml.com/plantuml`.
+
+<p align="center">
+  <img src="images/options-page.png">
+</p>
 
 However, if your UML is confidential and you cannot send it to an external server, you can also use any PlantUML server.
 Configuring "Base URL" on the setting page, delegates image generation to this server.
