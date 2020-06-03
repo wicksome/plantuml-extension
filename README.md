@@ -8,6 +8,7 @@
 
 - [**Chrome** extension][link-cws] [<img valign="middle" src="https://img.shields.io/chrome-web-store/v/jbdmdkcjhnceacdkahhpfpijcohplgaj.svg?label=%20">][link-cws]
 
+The chrome version also works in Opera (using [this](https://addons.opera.com/en/extensions/details/download-chrome-extension-9/)) and Edge.
 
 ## Features
 
