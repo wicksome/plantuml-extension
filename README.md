@@ -1,15 +1,20 @@
-# PlantUML Extension
+#  PlantUML Extension
 
 > This is a Google Chrome extension that replace PlantUML code blocks into preview images.
 
-[Chrome web store](#)
+[link-cws]: https://chrome.google.com/webstore/detail/plantuml-extension/jbdmdkcjhnceacdkahhpfpijcohplgaj "Version published on Chrome Web Store"
+
+## Install
+
+- [**Chrome** extension][link-cws] [<img valign="middle" src="https://img.shields.io/chrome-web-store/v/jbdmdkcjhnceacdkahhpfpijcohplgaj.svg?label=%20">][link-cws]
+
 
 ## Features
 
 - Preview
   - [x] GitHub Issues
   - [x] ZenHub Issues
-- [x] Support for GitHub Enterprise
+- [x] [Support for GitHub Enterprise](#support-for-github-enterprise)
 - [x] Support environment setting for each domain.
 - [ ] Support `!include` directive
 - [ ] Support rendering of `.pu`/`.puml`/`.plantuml` file
@@ -68,6 +73,11 @@ foo
 bar
 baz
 ```
+## Support for GitHub Enterprise
+
+If you're a GitHub Enterprise user, visit your Enterprise site, right-click on _the extension’s icon in the toolbar_ and select **Enable PlantUML Extension on this domain.**
+
+![gh-enterprise](./images/enable-github-enterprise.png)
 
 ## Using another PlantUML server by domain
 
