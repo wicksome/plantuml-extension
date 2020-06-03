@@ -4,6 +4,8 @@
 
 [link-cws]: https://chrome.google.com/webstore/detail/plantuml-extension/jbdmdkcjhnceacdkahhpfpijcohplgaj "Version published on Chrome Web Store"
 
+[<img valign="middle" src="https://img.shields.io/chrome-web-store/d/jbdmdkcjhnceacdkahhpfpijcohplgaj.svg?label=users">][link-cws]
+
 ## Install
 
 - [**Chrome** extension][link-cws] [<img valign="middle" src="https://img.shields.io/chrome-web-store/v/jbdmdkcjhnceacdkahhpfpijcohplgaj.svg?label=%20">][link-cws]
