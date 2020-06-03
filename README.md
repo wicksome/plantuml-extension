@@ -76,16 +76,20 @@ baz
 ```
 ## Support for GitHub Enterprise
 
-<img src="images/enable-github-enterprise.png" align="right" width="330">
-
 If you're a GitHub Enterprise user, visit your Enterprise site, right-click on _the extension’s icon in the toolbar_ and select **Enable PlantUML Extension on this domain.**
+
+<p align="center">
+  <img src="images/enable-github-enterprise.png">
+</p>
 
 ## Using another options(PlantUML server) by domain
 
-<img src="images/options-page.png" align="right" width="500">
-
 By default, this extension uses [PlantUML server](https://github.com/plantuml/plantuml-server)
 deployed to `https://www.plantuml.com/plantuml`.
+
+<p align="center">
+  <img src="images/options-page.png">
+</p>
 
 However, if your UML is confidential and you cannot send it to an external server, you can also use any PlantUML server.
 Configuring "Base URL" on the setting page, delegates image generation to this server.
