@@ -78,11 +78,7 @@ baz
 ```
 ## Support for GitHub Enterprise
 
-If you're a GitHub Enterprise user, visit your Enterprise site, right-click on _the extension’s icon in the toolbar_ and select **Enable PlantUML Extension on this domain.**
-
-<p align="center">
-  <img src="images/enable-github-enterprise.png">
-</p>
+If you're a GitHub Enterprise user, visit your Enterprise site, right-click on _the extension’s icon in the toolbar_ and select [**Enable PlantUML Extension on this domain.**](https://raw.githubusercontent.com/wicksome/plantuml-extension/master/images/enable-github-enterprise.png)
 
 ## Using another options(PlantUML server) by domain 
 
