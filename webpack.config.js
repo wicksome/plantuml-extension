@@ -9,20 +9,20 @@ module.exports = {
 	entry: {
 		background: './src/background',
 		options: './src/options',
-		'content-script': './src/content-script'
+		'content-script': './src/content-script',
 	},
 	output: {
 		path: path.join(__dirname, 'dist'),
-		filename: '[name].js'
+		filename: '[name].js',
 	},
 	module: {
 		rules: [
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
-				loader: 'babel-loader'
-			}
-		]
+				loader: 'babel-loader',
+			},
+		],
 	},
 	plugins: [
 		new SizePlugin(),
@@ -30,15 +30,15 @@ module.exports = {
 			{
 				from: '**/*',
 				context: 'src',
-				ignore: ['*.js']
+				ignore: ['*.js'],
 			},
 			{
-				from: 'node_modules/webextension-polyfill/dist/browser-polyfill.min.js'
+				from: 'node_modules/webextension-polyfill/dist/browser-polyfill.min.js',
 			},
 			{
-				from: 'node_modules/webext-base-css/webext-base.css'
-			}
-		])
+				from: 'node_modules/webext-base-css/webext-base.css',
+			},
+		]),
 	],
 	optimization: {
 		minimizer: [
@@ -48,10 +48,10 @@ module.exports = {
 					compress: false,
 					output: {
 						beautify: true,
-						indent_level: 2 // eslint-disable-line camelcase
-					}
-				}
-			})
-		]
-	}
+						indent_level: 2, // eslint-disable-line camelcase
+					},
+				},
+			}),
+		],
+	},
 }
