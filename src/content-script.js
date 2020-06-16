@@ -105,7 +105,6 @@ function onLoadAction(profile, baseUrl) {
 
 function run({ baseUrl, profile }) {
 	const siteProfile = Profiles[profile] || Profiles.default
-	console.log(siteProfile)
 
 	if (document.querySelector("i[aria-label='Loading content…']") !== null) {
 		// For wait loading @ gitlab.com
@@ -122,8 +121,6 @@ function run({ baseUrl, profile }) {
 
 const init = async () => {
 	const options = await optionsStorage.getAll()
-
-	console.log(options)
 
 	if (window.location.hostname === 'bitbucket.org') {
 		const observer = new MutationObserver(() => {
