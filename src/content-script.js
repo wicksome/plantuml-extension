@@ -141,6 +141,22 @@ const init = async () => {
 		})
 	}
 
+	if (window.location.hostname === "github.com") {
+		observer = new MutationObserver(function() {
+			if (document.querySelectorAll("pre[lang='puml']").length > 0) {
+				run(config);
+				//observer.disconnect();
+			}
+		});
+
+		observer.observe(document.body, {
+			attributes: true,
+			characterData: true,
+			childList: true,
+			subtree: true
+		});
+	}
+
 	run(options)
 }
 

@@ -3,15 +3,9 @@ import { encode } from 'plantuml-encoder'
 const Profiles = {
 	default: {
 		selector: "pre[lang='uml'], pre[lang='puml'], pre[lang='plantuml']",
-		extract(elem) {
-			return elem.querySelector('code').textContent.trim()
-		},
-		replace(elem) {
-			return elem
-		},
-		compress(elem) {
-			return encode(elem.querySelector('code').textContent.trim())
-		},
+		extract: (elem) => elem.querySelector('code').textContent.trim(),
+		replace: (elem) => elem,
+		compress: (elem) => encode(elem.querySelector('code').textContent.trim()),
 	},
 	github: {
 		// Markdown + asciidoc
@@ -54,9 +48,7 @@ const Profiles = {
 	},
 	gitlab: {
 		selector: 'pre code span.line, div div pre', // Markdown, asciidoc
-		extract(elem) {
-			return elem.textContent.trim()
-		},
+		extract: (elem) => elem.textContent.trim(),
 		replace(elem) {
 			const child = elem.querySelector('code')
 			if (child === null) {
@@ -82,27 +74,21 @@ const Profiles = {
 	},
 	gitpitch: {
 		selector: 'pre code.lang-uml',
-		extract: (elem) => {
-			return elem.innerText.trim()
-		},
-		replace: (elem) => {
-			return elem
-		},
-		compress: (elem) => {
-			return encode(elem.innerText.trim())
-		},
+		extract: (elem) => elem.innerText.trim(),
+		replace: (elem) => elem,
+		compress: (elem) => encode(elem.innerText.trim()),
 	},
 	bitbucket: {
 		selector: 'div.codehilite.language-plantuml > pre',
-		extract(elem) {
-			return elem.innerText.trim()
-		},
-		replace(elem) {
-			return elem
-		},
-		compress(elem) {
-			return encode(elem.innerText.trim())
-		},
+		extract: (elem) => elem.innerText.trim(),
+		replace: (elem) => elem,
+		compress: (elem) => encode(elem.innerText.trim()),
+	},
+	atlassian: {
+		selector: 'pre.code-java, pre',
+		extract: (elem) => elem.innerText.trim(),
+		compress: (elem) => compress(elem.innerText.trim()),
+		replace: (elem) => elem.parentElement.parentElement,
 	},
 }
 
