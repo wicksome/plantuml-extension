@@ -141,21 +141,26 @@ const init = async () => {
 		})
 	}
 
-	if (window.location.hostname === "github.com") {
-		observer = new MutationObserver(function() {
-			if (document.querySelectorAll("pre[lang='puml']").length > 0) {
-				run(config);
-				//observer.disconnect();
-			}
-		});
+	// TODO: 미리보기시에도 적용되나 더블클릭으로 코드를 볼때에도 실행되면서 코드를 볼 수 있는 방법이 사라짐
+	// if (window.location.hostname === 'github.com') {
+	// 	const observer = new MutationObserver(() => {
+	// 		const siteProfile = Profiles[options.profile]
 
-		observer.observe(document.body, {
-			attributes: true,
-			characterData: true,
-			childList: true,
-			subtree: true
-		});
-	}
+	// 		if (!!siteProfile) {
+	// 			if (document.querySelectorAll(siteProfile.selector).length > 0) {
+	// 				run(options)
+	// 				//observer.disconnect();
+	// 			}
+	// 		}
+	// 	})
+
+	// 	observer.observe(document.body, {
+	// 		attributes: true,
+	// 		characterData: true,
+	// 		childList: true,
+	// 		subtree: true,
+	// 	})
+	// }
 
 	run(options)
 }
