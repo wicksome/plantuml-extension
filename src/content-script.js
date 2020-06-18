@@ -12,8 +12,7 @@ function escapeHtml(text) {
 
 function getBackgroundColor(element, pseudoElt) {
 	if (element === null) return ''
-	return window.getComputedStyle(element, pseudoElt ? pseudoElt : null)
-	.getPropertyValue('background-color')
+	return window.getComputedStyle(element, pseudoElt ? pseudoElt : null).getPropertyValue('background-color')
 }
 
 function CodePre(nodeList) {
@@ -59,7 +58,6 @@ function replaceElement(umlElem, srcUrl) {
 
 	umlElem.addEventListener('dblclick', () => {
 		parent.replaceChild(imgElem, umlElem)
-		console.log(codePre)
 		if (codePre.exist) parent.style.backgroundColor = codePre.parentColor
 	})
 }
@@ -93,7 +91,6 @@ function onLoadAction(profile, baseUrl) {
 	console.log(`Count of elements for rendering: ${umlElements.length}`)
 
 	umlElements.forEach((umlElem) => {
-		console.log(umlElements.length)
 		umlElem.dataset.rendering = true
 
 		const plantUmlUrl = plantUmlBaseUrl + profile.compress(umlElem)
