@@ -11,14 +11,9 @@ function escapeHtml(text) {
 }
 
 function getBackgroundColor(element, pseudoElt) {
-	if (element != null) return ''
-
-	if (pseudoElt === undefined) {
-		pseudoElt = null
-	}
-	pseudoElt = pseudoElt === undefined ? null : pseudoElt
-
-	return window.getComputedStyle(element, pseudoElt).getPropertyValue('background-color')
+	if (element === null) return ''
+	return window.getComputedStyle(element, pseudoElt ? pseudoElt : null)
+	.getPropertyValue('background-color')
 }
 
 function CodePre(nodeList) {
@@ -35,12 +30,6 @@ function CodePre(nodeList) {
 
 const codePre = new CodePre(document.querySelectorAll('.markdown-body pre')) // Github style
 
-function changeBackgroundColor(element, color, exist) {
-	if (exist) {
-		element.style.backgroundColor = color
-	}
-}
-
 const createImgElement = (src) => {
 	// For asciidoc (div div pre)
 	const imgElem = document.createElement('img')
@@ -56,18 +45,22 @@ function replaceElement(umlElem, srcUrl) {
 	if (umlElem.dataset.skipRender) return
 
 	const imgElem = createImgElement(srcUrl)
+
+	// change code to diagram
 	parent.replaceChild(imgElem, umlElem)
-	changeBackgroundColor(parent, codePre.parentColor, codePre.exist)
+	if (codePre.exist) parent.style.backgroundColor = codePre.parentColor
 
 	imgElem.addEventListener('dblclick', () => {
 		umlElem.dataset.skipRender = true
+
 		parent.replaceChild(umlElem, imgElem)
-		changeBackgroundColor(parent, codePre.selfColor, codePre.exist)
+		if (codePre.exist) parent.style.backgroundColor = codePre.selfColor
 	})
 
 	umlElem.addEventListener('dblclick', () => {
 		parent.replaceChild(imgElem, umlElem)
-		changeBackgroundColor(parent, codePre.parentColor, codePre.exist)
+		console.log(codePre)
+		if (codePre.exist) parent.style.backgroundColor = codePre.parentColor
 	})
 }
 
@@ -96,7 +89,7 @@ function onLoadAction(profile, baseUrl) {
 		.filter((umlElem) => profile.extract(umlElem).startsWith('@start'))
 		.filter((umlElem) => !umlElem.dataset.rendering)
 
-	if(umlElements.length === 0) return
+	if (umlElements.length === 0) return
 	console.log(`Count of elements for rendering: ${umlElements.length}`)
 
 	umlElements.forEach((umlElem) => {
