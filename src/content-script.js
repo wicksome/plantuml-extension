@@ -11,15 +11,14 @@ function escapeHtml(text) {
 }
 
 function getBackgroundColor(element, pseudoElt) {
-	if (element !== null) {
-		if (pseudoElt === undefined) {
-			pseudoElt = null
-		}
+	if (element != null) return ''
 
-		return window.getComputedStyle(element, pseudoElt).getPropertyValue('background-color')
+	if (pseudoElt === undefined) {
+		pseudoElt = null
 	}
+	pseudoElt = pseudoElt === undefined ? null : pseudoElt
 
-	return ''
+	return window.getComputedStyle(element, pseudoElt).getPropertyValue('background-color')
 }
 
 function CodePre(nodeList) {
@@ -42,16 +41,21 @@ function changeBackgroundColor(element, color, exist) {
 	}
 }
 
+const createImgElement = (src) => {
+	// For asciidoc (div div pre)
+	const imgElem = document.createElement('img')
+	imgElem.setAttribute('src', escapeHtml(src))
+	imgElem.setAttribute('title', 'PlantUML diagram')
+	return imgElem
+}
+
 function replaceElement(umlElem, srcUrl) {
 	const parent = umlElem.parentNode
 
 	if (parent === null) return
 	if (umlElem.dataset.skipRender) return
 
-	// For asciidoc (div div pre)
-	const imgElem = document.createElement('img')
-	imgElem.setAttribute('src', escapeHtml(srcUrl))
-	imgElem.setAttribute('title', 'PlantUML diagram')
+	const imgElem = createImgElement(srcUrl)
 	parent.replaceChild(imgElem, umlElem)
 	changeBackgroundColor(parent, codePre.parentColor, codePre.exist)
 
@@ -88,13 +92,17 @@ function loop(counter, retry, siteProfile, baseUrl, type) {
 function onLoadAction(profile, baseUrl) {
 	const plantUmlBaseUrl = baseUrl || 'https://www.plantuml.com/plantuml/img/'
 
-	const umlElements = [...document.querySelectorAll(profile.selector)].filter((umlElem) =>
-		profile.extract(umlElem).startsWith('@start')
-	)
+	const umlElements = [...document.querySelectorAll(profile.selector)]
+		.filter((umlElem) => profile.extract(umlElem).startsWith('@start'))
+		.filter((umlElem) => !umlElem.dataset.rendering)
 
+	if(umlElements.length === 0) return
 	console.log(`Count of elements for rendering: ${umlElements.length}`)
 
 	umlElements.forEach((umlElem) => {
+		console.log(umlElements.length)
+		umlElem.dataset.rendering = true
+
 		const plantUmlUrl = plantUmlBaseUrl + profile.compress(umlElem)
 		const replaceElem = profile.replace(umlElem)
 

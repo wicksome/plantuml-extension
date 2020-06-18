@@ -5,7 +5,7 @@
 		"format": "sort-package-json",
 		"lint": "run-p lint:*",
 		"lint-fix": "run-p 'lint:* -- --fix'",
-		"release": "VER=$(daily-version) run-s build version release:*",
+		"release": "VER=$(daily-version) run-s build version",
 		"release:amo": "web-ext-submit --source-dir dist",
 		"test": "run-s lint:* build",
 		"version": "dot-json dist/manifest.json version $VER",
