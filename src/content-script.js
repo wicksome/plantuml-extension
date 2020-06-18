@@ -45,24 +45,26 @@ function changeBackgroundColor(element, color, exist) {
 function replaceElement(umlElem, srcUrl) {
 	const parent = umlElem.parentNode
 
-	if (parent !== null) {
-		// For asciidoc (div div pre)
-		const imgElem = document.createElement('img')
-		imgElem.setAttribute('src', escapeHtml(srcUrl))
-		imgElem.setAttribute('title', '')
+	if (parent === null) return
+	if (umlElem.dataset.skipRender) return
+
+	// For asciidoc (div div pre)
+	const imgElem = document.createElement('img')
+	imgElem.setAttribute('src', escapeHtml(srcUrl))
+	imgElem.setAttribute('title', 'PlantUML diagram')
+	parent.replaceChild(imgElem, umlElem)
+	changeBackgroundColor(parent, codePre.parentColor, codePre.exist)
+
+	imgElem.addEventListener('dblclick', () => {
+		umlElem.dataset.skipRender = true
+		parent.replaceChild(umlElem, imgElem)
+		changeBackgroundColor(parent, codePre.selfColor, codePre.exist)
+	})
+
+	umlElem.addEventListener('dblclick', () => {
 		parent.replaceChild(imgElem, umlElem)
 		changeBackgroundColor(parent, codePre.parentColor, codePre.exist)
-
-		imgElem.addEventListener('dblclick', () => {
-			parent.replaceChild(umlElem, imgElem)
-			changeBackgroundColor(parent, codePre.selfColor, codePre.exist)
-		})
-
-		umlElem.addEventListener('dblclick', () => {
-			parent.replaceChild(imgElem, umlElem)
-			changeBackgroundColor(parent, codePre.parentColor, codePre.exist)
-		})
-	}
+	})
 }
 
 function loop(counter, retry, siteProfile, baseUrl, type) {
@@ -122,42 +124,26 @@ function run({ baseUrl, profile }) {
 const init = async () => {
 	const options = await optionsStorage.getAll()
 
-	if (window.location.hostname === 'bitbucket.org') {
-		const observer = new MutationObserver(() => {
-			if (document.querySelectorAll('.language-plantuml').length > 0) {
+	const observer = new MutationObserver(() => {
+		const siteProfile = Profiles[options.profile]
+
+		if (!!siteProfile) {
+			if (document.querySelectorAll(siteProfile.selector).length > 0) {
 				run(options)
-				observer.disconnect()
+
+				if (options.profile === 'bitbucket') {
+					observer.disconnect()
+				}
 			}
-		})
+		}
+	})
 
-		observer.observe(document.body, {
-			attributes: true,
-			characterData: true,
-			childList: true,
-			subtree: true,
-		})
-	}
-
-	// TODO: 미리보기시에도 적용되나 더블클릭으로 코드를 볼때에도 실행되면서 코드를 볼 수 있는 방법이 사라짐
-	// if (window.location.hostname === 'github.com') {
-	// 	const observer = new MutationObserver(() => {
-	// 		const siteProfile = Profiles[options.profile]
-
-	// 		if (!!siteProfile) {
-	// 			if (document.querySelectorAll(siteProfile.selector).length > 0) {
-	// 				run(options)
-	// 				//observer.disconnect();
-	// 			}
-	// 		}
-	// 	})
-
-	// 	observer.observe(document.body, {
-	// 		attributes: true,
-	// 		characterData: true,
-	// 		childList: true,
-	// 		subtree: true,
-	// 	})
-	// }
+	observer.observe(document.body, {
+		attributes: true,
+		characterData: true,
+		childList: true,
+		subtree: true,
+	})
 
 	run(options)
 }
