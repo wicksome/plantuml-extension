@@ -87,7 +87,7 @@ const Profiles = {
 	atlassian: {
 		selector: 'pre.code-java, pre',
 		extract: (elem) => elem.innerText.trim(),
-		compress: (elem) => compress(elem.innerText.trim()),
+		compress: (elem) => elem.innerText.trim(),
 		replace: (elem) => elem.parentElement.parentElement,
 	},
 }
