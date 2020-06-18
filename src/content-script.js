@@ -88,21 +88,25 @@ function loop(counter, retry, siteProfile, baseUrl, type) {
 function onLoadAction(profile, baseUrl) {
 	const plantUmlBaseUrl = baseUrl || 'https://www.plantuml.com/plantuml/img/'
 
-	;[...document.querySelectorAll(profile.selector)]
-		.filter((umlElem) => profile.extract(umlElem).startsWith('@start'))
-		.forEach((umlElem) => {
-			const plantUmlUrl = plantUmlBaseUrl + profile.compress(umlElem)
-			const replaceElem = profile.replace(umlElem)
+	const umlElements = [...document.querySelectorAll(profile.selector)].filter((umlElem) =>
+		profile.extract(umlElem).startsWith('@start')
+	)
 
-			if (plantUmlUrl.startsWith('https')) {
-				replaceElement(replaceElem, plantUmlUrl)
-			} else {
-				// To avoid mixed-content
-				chrome.runtime.sendMessage({ action: 'plantuml', url: plantUmlUrl }, (dataUri) =>
-					replaceElement(replaceElem, dataUri)
-				)
-			}
-		})
+	console.log(`Count of elements for rendering: ${umlElements.length}`)
+
+	umlElements.forEach((umlElem) => {
+		const plantUmlUrl = plantUmlBaseUrl + profile.compress(umlElem)
+		const replaceElem = profile.replace(umlElem)
+
+		if (plantUmlUrl.startsWith('https')) {
+			replaceElement(replaceElem, plantUmlUrl)
+		} else {
+			// To avoid mixed-content
+			chrome.runtime.sendMessage({ action: 'plantuml', url: plantUmlUrl }, (dataUri) =>
+				replaceElement(replaceElem, dataUri)
+			)
+		}
+	})
 }
 
 function run({ baseUrl, profile }) {
