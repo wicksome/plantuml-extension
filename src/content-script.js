@@ -129,14 +129,12 @@ const init = async () => {
 	const observer = new MutationObserver(() => {
 		const siteProfile = Profiles[options.profile]
 
-		if (!!siteProfile) {
-			if (document.querySelectorAll(siteProfile.selector).length > 0) {
-				run(options)
+		if (!siteProfile) return
+		if (document.querySelectorAll(siteProfile.selector).length <= 0) return
 
-				if (options.profile === 'bitbucket') {
-					observer.disconnect()
-				}
-			}
+		run(options)
+		if (options.profile === 'bitbucket') {
+			observer.disconnect()
 		}
 	})
 
