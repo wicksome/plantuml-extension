@@ -9,7 +9,7 @@ const Profiles = {
 	},
 	github: {
 		// Markdown + asciidoc
-		selector: "pre[lang='uml'], pre[lang='puml'], pre[lang='plantuml'], div div pre", // Markdown, asciidoc
+		selector: "pre[lang='uml'], pre[lang='puml'], pre[lang='plantuml'], div div pre:not(.CodeMirror-line)", // Markdown, asciidoc
 		extract: (elem) => {
 			const child = elem.querySelector('code')
 			if (child !== null) {
