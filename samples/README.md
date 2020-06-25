@@ -51,6 +51,7 @@ center footer © CustomCompany Corp. All Rights Reserved.
 skinparam defaultTextAlignment center
 skinparam monochrome true
 skinparam shadowing false
+
 skinparam node {
   backgroundColor Transparent
   borderColor Transparent
@@ -73,28 +74,20 @@ hide members
 
 !define ICONURL https://raw.githubusercontent.com/Roemer/plantuml-office/master/office2014
 !includeurl ICONURL/Concepts/globe_internet.puml
-!includeurl ICONURL/Servers/server_generic.puml
 !includeurl ICONURL/Devices/switch.puml
 !includeurl ICONURL/Servers/network.puml
-!includeurl ICONURL/Devices/router.puml
 
 node "<$globe_internet>\nInternet" as internet
 node "<$network>\nNetwork"
 
 frame "Network" as network {
-  frame "DMZ" as dmz {
-    node "<$switch>\nL4" as l41
-  }
-  frame "Private" as pri {
-    node "<$switch>\nL4" as l42
-  }
+  node "<$switch>\nL4" as l4
   
   node desc_api [
     description...
   ]
 	
-	pri .[hidden]down. desc_api
-  dmz .[hidden]down. desc_api
+  l4 .[hidden]down. desc_api
 }
 
 internet -[hidden]down- network
