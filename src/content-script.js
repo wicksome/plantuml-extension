@@ -1,6 +1,8 @@
 import optionsStorage from './options-storage'
 import { Profiles } from './constants'
-import { escapeHtml, createImgElement } from './encoder/utils'
+import { createImgElement } from './encoder/utils'
+
+const DEFAULT_SERVER = 'https://www.plantuml.com/plantuml/img/'
 
 function getBackgroundColor(element, pseudoElt) {
 	if (element === null) return ''
@@ -65,7 +67,7 @@ function loop(counter, retry, siteProfile, baseUrl, type) {
 }
 
 function onLoadAction(profile, baseUrl) {
-	const plantUmlBaseUrl = baseUrl || 'https://www.plantuml.com/plantuml/img/'
+	const plantUmlBaseUrl = baseUrl || DEFAULT_SERVER
 
 	const umlElements = [...document.querySelectorAll(profile.selector)]
 		.filter((umlElem) => profile.extract(umlElem).startsWith('@start'))
