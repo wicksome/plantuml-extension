@@ -69,11 +69,14 @@ function loop(counter, retry, siteProfile, baseUrl, type) {
 function onLoadAction(profile, baseUrl) {
 	const plantUmlBaseUrl = baseUrl || DEFAULT_SERVER
 
+	// TODO: get text from raw file
+
 	const umlElements = [...document.querySelectorAll(profile.selector)]
 		.filter((umlElem) => profile.extract(umlElem).startsWith('@start'))
 		.filter((umlElem) => !umlElem.dataset.rendering)
 
 	if (umlElements.length === 0) return
+
 	console.log(`Count of elements for rendering: ${umlElements.length}`)
 
 	umlElements.forEach((umlElem) => {
@@ -95,6 +98,9 @@ function onLoadAction(profile, baseUrl) {
 
 function run({ baseUrl, profile }) {
 	const siteProfile = Profiles[profile] || Profiles.default
+
+	// TODO: check profile when raw file
+	// TODO: check profile when raw file(file://)
 
 	if (document.querySelector("i[aria-label='Loading content…']") !== null) {
 		// For wait loading @ gitlab.com
