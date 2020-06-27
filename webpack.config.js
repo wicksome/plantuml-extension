@@ -26,19 +26,23 @@ module.exports = {
 	},
 	plugins: [
 		new SizePlugin(),
-		new CopyWebpackPlugin([
-			{
-				from: '**/*',
-				context: 'src',
-				ignore: ['*.js'],
-			},
-			{
-				from: 'node_modules/webextension-polyfill/dist/browser-polyfill.min.js',
-			},
-			{
-				from: 'node_modules/webext-base-css/webext-base.css',
-			},
-		]),
+		new CopyWebpackPlugin({
+			patterns: [
+				{
+					from: '**/*',
+					context: 'src',
+					globOptions: {
+						ignore: ['*.js'],
+					},
+				},
+				{
+					from: 'node_modules/webextension-polyfill/dist/browser-polyfill.min.js',
+				},
+				{
+					from: 'node_modules/webext-base-css/webext-base.css',
+				},
+			],
+		}),
 	],
 	optimization: {
 		minimizer: [
