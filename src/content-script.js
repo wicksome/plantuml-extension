@@ -1,14 +1,6 @@
 import optionsStorage from './options-storage'
 import { Profiles } from './constants'
-
-function escapeHtml(text) {
-	return text
-		.replace(/&/g, '&amp;')
-		.replace(/</g, '&lt;')
-		.replace(/>/g, '&gt;')
-		.replace(/"/g, '&quot;')
-		.replace(/'/g, '&#039;')
-}
+import { escapeHtml, createImgElement } from './encoder/utils'
 
 function getBackgroundColor(element, pseudoElt) {
 	if (element === null) return ''
@@ -28,14 +20,6 @@ function CodePre(nodeList) {
 }
 
 const codePre = new CodePre(document.querySelectorAll('.markdown-body pre')) // Github style
-
-const createImgElement = (src) => {
-	// For asciidoc (div div pre)
-	const imgElem = document.createElement('img')
-	imgElem.setAttribute('src', escapeHtml(src))
-	imgElem.setAttribute('title', 'PlantUML diagram')
-	return imgElem
-}
 
 function replaceElement(umlElem, srcUrl) {
 	const parent = umlElem.parentNode

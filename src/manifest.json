@@ -24,7 +24,15 @@
 	"content_scripts": [
 		{
 			"js": ["content-script.js"],
-			"matches": ["https://github.com/*"]
+			"matches": [
+				"https://github.com/*",
+				"*://*/*.pu*",
+				"*://*/*.puml*",
+				"*://*/*.plantuml*",
+				"file:///*/*.pu*",
+				"file:///*/*.puml*",
+				"file:///*/*.plantuml*"
+			]
 		}
 	]
 }
