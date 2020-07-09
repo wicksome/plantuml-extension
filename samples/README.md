@@ -94,3 +94,12 @@ internet -[hidden]down- network
 
 @enduml
 ```
+
+
+## C4 Model
+
+> https://c4model.com/
+
+- https://github.com/RicardoNiepel/C4-PlantUML
+  - https://github.com/adrianvlupu/C4-PlantUML
+    - https://github.com/pniewiejski/C4-PlantUML
