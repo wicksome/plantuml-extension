@@ -126,3 +126,4 @@ generated image is converted to [DATA URI](https://tools.ietf.org/html/rfc2397).
 - [REAL WORLD PlantUML](https://real-world-plantuml.com/): Source code of [real-world-plantuml.com](https://real-world-plantuml.com/)
 - https://github.com/rabelenda/gilbarbara-plantuml-sprites
 - https://github.com/Roemer/plantuml-office
+- https://github.com/kkeisuke/plantuml-editor
