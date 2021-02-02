@@ -44,12 +44,20 @@ const Profiles = {
 			return elem.textContent.trim()
 		},
 		replace: (elem) => {
+			// .puml, .pu, .plantuml
+			if (elem.classList.contains('blob-wrapper') && URL_REGEX.test(location.href)) {
+				return elem.querySelector('table')
+			}
+
 			const child = elem.querySelector('code')
+
+			// Markdown
 			if (child !== null) {
 				return child
-			} // Markdown
+			}
 
-			return elem // Asciidoc
+			// Asciidoc
+			return elem
 		},
 		compress: (elem) => {
 			let plantuml = ''
@@ -123,4 +131,4 @@ const Profiles = {
 	},
 }
 
-export { Profiles }
+export { Profiles, URL_REGEX}

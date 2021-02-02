@@ -1,5 +1,5 @@
 import optionsStorage from './options-storage'
-import { Profiles } from './constants'
+import { Profiles, URL_REGEX } from './constants'
 import { createImgElement } from './encoder/utils'
 
 const DEFAULT_SERVER = 'https://www.plantuml.com/plantuml/img/'
@@ -30,6 +30,9 @@ function replaceElement(umlElem, srcUrl) {
 	if (umlElem.dataset.skipRender) return
 
 	const imgElem = createImgElement(srcUrl)
+	if (URL_REGEX.test(location.href)) {
+		imgElem.setAttribute('style', 'max-width: 100%; padding: 15px; display: block; margin-left: auto; margin-right: auto;')
+	}
 
 	// change code to diagram
 	parent.replaceChild(imgElem, umlElem)
