@@ -25,8 +25,6 @@ const Profiles = {
 			'div .blob-wrapper', // .puml, .pu, .plantuml
 		].join(', '),
 		extract: (elem) => {
-			console.log(elem)
-
 			// .puml, .pu, .plantuml
 			if (elem.classList.contains('blob-wrapper') && URL_REGEX.test(location.href)) {
 				return [...elem.querySelectorAll('td.blob-code-inner')].map((row) => row.innerText).join('\n')
