@@ -19,8 +19,8 @@ The chrome version also works in Opera (using [this](https://addons.opera.com/en
   - [x] ZenHub Issues
 - [x] [Support for GitHub Enterprise](#support-for-github-enterprise)
 - [x] Support environment setting for each domain.
+- [x] Support rendering of `.pu`/`.puml`/`.plantuml` file
 - [ ] Support `!include` directive
-- [ ] Support rendering of `.pu`/`.puml`/`.plantuml` file
 
 ## Sample contents
 
