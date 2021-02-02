@@ -1,6 +1,6 @@
 import { encode } from 'plantuml-encoder'
 
-const URL_REGEX = /^.*\.(plantuml|pu|puml)(\?.*)?$/
+const URL_REGEX = /^.*\.(plantuml|pu|puml)(\?.*)?$/i
 
 /**
  * selector: 대상 엘리먼트 조회
