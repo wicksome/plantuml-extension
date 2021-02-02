@@ -36,7 +36,6 @@ const Profiles = {
 
 			// markdown
 			if (child !== null) {
-				console.log(child.textContent.trim())
 				return child.textContent.trim()
 			}
 
