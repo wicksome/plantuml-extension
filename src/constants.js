@@ -27,7 +27,7 @@ const Profiles = {
 		extract: (elem) => {
 			// .puml, .pu, .plantuml
 			if (elem.classList.contains('blob-wrapper') && URL_REGEX.test(location.href)) {
-				return [...elem.querySelectorAll('td.blob-code-inner')].map((row) => row.innerText).join('\n')
+				return [...elem.querySelectorAll('td.blob-code-inner')].map((row) => row.innerText).join('\n').trim()
 			}
 
 			const child = elem.querySelector('code')
