@@ -26,8 +26,15 @@ const Profiles = {
 		].join(', '),
 		extract: (elem) => {
 			// .puml, .pu, .plantuml
-			if (elem.classList.contains('blob-wrapper') && URL_REGEX.test(location.href)) {
-				return [...elem.querySelectorAll('td.blob-code-inner')].map((row) => row.innerText).join('\n').trim()
+			if (elem.classList.contains('blob-wrapper')) {
+				if (URL_REGEX.test(location.href)) {
+					return [...elem.querySelectorAll('td.blob-code-inner')]
+						.map((row) => row.innerText)
+						.join('\n')
+						.trim()
+				} else {
+					return null
+				}
 			}
 
 			const child = elem.querySelector('code')
@@ -61,7 +68,10 @@ const Profiles = {
 
 			if (elem.classList.contains('blob-wrapper') && URL_REGEX.test(location.href)) {
 				// .puml, .pu, .plantuml
-				plantuml = [...elem.querySelectorAll('td.blob-code-inner')].map((row) => row.innerText).join('\n')
+				plantuml = [...elem.querySelectorAll('td.blob-code-inner')]
+					.map((row) => row.innerText)
+					.join('\n')
+					.trim()
 			} else {
 				const child = elem.querySelector('code')
 				if (child === null) {
@@ -128,4 +138,4 @@ const Profiles = {
 	},
 }
 
-export { Profiles, URL_REGEX}
+export { Profiles, URL_REGEX }

@@ -75,7 +75,10 @@ function onLoadAction(profile, baseUrl) {
 	// TODO: get text from raw file
 
 	const umlElements = [...document.querySelectorAll(profile.selector)]
-		.filter((umlElem) => profile.extract(umlElem).startsWith('@start'))
+		.filter((umlElem) => {
+			const elem = profile.extract(umlElem)
+			return !!elem && elem.startsWith('@start')
+		})
 		.filter((umlElem) => !umlElem.dataset.rendering)
 
 	if (umlElements.length === 0) return
