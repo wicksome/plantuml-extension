@@ -28,7 +28,7 @@
 	},
 	"content_scripts": [
 		{
-			"js": ["content-script.js"],
+			"js": ["plantuml-extension.js"],
 			"matches": [
 				"https://github.com/*"
 			]

@@ -1,5 +1,13 @@
 import { encode } from 'plantuml-encoder'
 
+const URL_REGEX = /^.*\.(plantuml|pu|puml)(\?.*)?$/i
+
+/**
+ * selector: 대상 엘리먼트 조회
+ * extract: 코드 추출
+ * replace: 대상 엘리먼트내에 이미지로 변경할 엘리먼트
+ * compress:
+ */
 const Profiles = {
 	default: {
 		selector: "pre[lang='uml'], pre[lang='puml'], pre[lang='plantuml']",
@@ -9,32 +17,70 @@ const Profiles = {
 	},
 	github: {
 		// Markdown + asciidoc
-		selector: "pre[lang='uml'], pre[lang='puml'], pre[lang='plantuml'], div div pre:not(.CodeMirror-line)", // Markdown, asciidoc
+		selector: [
+			"pre[lang='uml']",
+			"pre[lang='puml']",
+			"pre[lang='plantuml']",
+			'div div pre:not(.CodeMirror-line)', // asciidoc
+			'div .blob-wrapper', // .puml, .pu, .plantuml
+		].join(', '),
 		extract: (elem) => {
+			// .puml, .pu, .plantuml
+			if (elem.classList.contains('blob-wrapper')) {
+				if (URL_REGEX.test(location.href)) {
+					return [...elem.querySelectorAll('td.blob-code-inner')]
+						.map((row) => row.innerText)
+						.join('\n')
+						.trim()
+				} else {
+					return null
+				}
+			}
+
 			const child = elem.querySelector('code')
+
+			// markdown
 			if (child !== null) {
 				return child.textContent.trim()
-			} // Markdown
+			}
 
-			return elem.textContent.trim() // Asciidoc
+			// asciidoc
+			return elem.textContent.trim()
 		},
 		replace: (elem) => {
+			// .puml, .pu, .plantuml
+			if (elem.classList.contains('blob-wrapper') && URL_REGEX.test(location.href)) {
+				return elem.querySelector('table')
+			}
+
 			const child = elem.querySelector('code')
+
+			// Markdown
 			if (child !== null) {
 				return child
-			} // Markdown
+			}
 
-			return elem // Asciidoc
+			// Asciidoc
+			return elem
 		},
 		compress: (elem) => {
 			let plantuml = ''
-			const child = elem.querySelector('code')
-			if (child === null) {
-				// Asciidoc
-				plantuml = elem.textContent.trim()
+
+			if (elem.classList.contains('blob-wrapper') && URL_REGEX.test(location.href)) {
+				// .puml, .pu, .plantuml
+				plantuml = [...elem.querySelectorAll('td.blob-code-inner')]
+					.map((row) => row.innerText)
+					.join('\n')
+					.trim()
 			} else {
-				// Markdown
-				plantuml = elem.querySelector('code').textContent.trim()
+				const child = elem.querySelector('code')
+				if (child === null) {
+					// Asciidoc
+					plantuml = elem.textContent.trim()
+				} else {
+					// Markdown
+					plantuml = elem.querySelector('code').textContent.trim()
+				}
 			}
 
 			return encode(plantuml)
@@ -92,4 +138,4 @@ const Profiles = {
 	},
 }
 
-export { Profiles }
+export { Profiles, URL_REGEX }

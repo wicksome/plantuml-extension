@@ -9,7 +9,7 @@ module.exports = {
 	entry: {
 		background: './src/background',
 		options: './src/options',
-		'content-script': './src/content-script',
+		'plantuml-extension': './src/plantuml-extension',
 	},
 	output: {
 		path: path.join(__dirname, 'dist'),

@@ -1,5 +1,5 @@
 import optionsStorage from './options-storage'
-import { Profiles } from './constants'
+import { Profiles, URL_REGEX } from './constants'
 import { createImgElement } from './encoder/utils'
 
 const DEFAULT_SERVER = 'https://www.plantuml.com/plantuml/img/'
@@ -30,6 +30,11 @@ function replaceElement(umlElem, srcUrl) {
 	if (umlElem.dataset.skipRender) return
 
 	const imgElem = createImgElement(srcUrl)
+	imgElem.setAttribute('style', 'max-width: 100%;')
+	if (URL_REGEX.test(location.href)) {
+		const style = imgElem.getAttribute('style')
+		imgElem.setAttribute('style', style + 'padding: 15px; display: block; margin-left: auto; margin-right: auto;')
+	}
 
 	// change code to diagram
 	parent.replaceChild(imgElem, umlElem)
@@ -72,7 +77,10 @@ function onLoadAction(profile, baseUrl) {
 	// TODO: get text from raw file
 
 	const umlElements = [...document.querySelectorAll(profile.selector)]
-		.filter((umlElem) => profile.extract(umlElem).startsWith('@start'))
+		.filter((umlElem) => {
+			const elem = profile.extract(umlElem)
+			return !!elem && elem.startsWith('@start')
+		})
 		.filter((umlElem) => !umlElem.dataset.rendering)
 
 	if (umlElements.length === 0) return
@@ -117,6 +125,8 @@ function run({ baseUrl, profile }) {
 
 const init = async () => {
 	const options = await optionsStorage.getAll()
+	console.log(window.location.href)
+	console.log("options", options)
 
 	const observer = new MutationObserver(() => {
 		const siteProfile = Profiles[options.profile]

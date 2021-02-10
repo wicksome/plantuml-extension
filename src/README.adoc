@@ -2,7 +2,7 @@
 
 * `manifest.json` - 확장 프로그램 설정 파일
 * `background.js` - plantuml-extension이 실제 동작하는 스크립트
-* `content-script.js` - 사용자 화면의 DOM을 제어하는데 사용하는 스크립트
+* `content-script.js` - 사용자 화면의 DOM을 제어하는데 사용하는 스크립트(`plantuml-extension.js`)
 
 
 ---

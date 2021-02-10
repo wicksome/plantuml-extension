@@ -14,7 +14,7 @@ const injectContentScript = (tab) => {
 		)
 
 		if (tab.url.match(regex)) {
-			chrome.tabs.executeScript(tab.id, { file: 'content-script.js' }, chrome.runtime.lastError)
+			chrome.tabs.executeScript(tab.id, { file: 'plantuml-extension.js' }, chrome.runtime.lastError)
 		}
 	})
 }
