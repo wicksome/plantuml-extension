@@ -16,23 +16,23 @@
 		"chrome_style": true,
 		"page": "options.html"
 	},
-	"browser_action": {},
+	"browser_action": {
+		"default_icon": "icon/icon16.png"
+	},
 	"background": {
 		"persistent": false,
-		"scripts": ["browser-polyfill.min.js", "background.js"]
+		"scripts": [
+			"browser-polyfill.min.js",
+			"background.js"
+		]
 	},
 	"content_scripts": [
 		{
 			"js": ["content-script.js"],
 			"matches": [
-				"https://github.com/*",
-				"*://*/*.pu*",
-				"*://*/*.puml*",
-				"*://*/*.plantuml*",
-				"file:///*/*.pu*",
-				"file:///*/*.puml*",
-				"file:///*/*.plantuml*"
+				"https://github.com/*"
 			]
 		}
-	]
+	],
+	"web_accessible_resources": []
 }
