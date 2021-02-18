@@ -115,11 +115,6 @@ generated image is converted to [DATA URI](https://tools.ietf.org/html/rfc2397).
 4. Rebase your local changes against the `develop` branch
 5. Create new Pull Request
 
-## Author
-
-[Yeongjun Kim](https://github.com/wicksome)
-
-
 ## See Also
 
 - [PlantUML Guide](http://plantuml.com/ko/guide)
