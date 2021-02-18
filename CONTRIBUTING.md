@@ -2,6 +2,13 @@
 
 TODO
 
+1. Fork (wkcksome/plantuml-extension/fork)
+2. Create a feature branch named like `feature/something_awesome_feature` from `develop` branch
+3. Commit your changes
+4. Rebase your local changes against the `develop` branch
+5. Create new Pull Request
+
+
 ## Installation
 
 1. Clone the repository `git clone https://github.com/wicksome/plantuml-extension.git`
