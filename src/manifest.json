@@ -1,38 +1,47 @@
 {
-	"name": "PlantUML Extension",
-	"version": "0.0.0",
-	"description": "Show graphs and diagrams rendered by PlantUML.",
-	"homepage_url": "https://github.com/wicksome/plantuml-extension",
-	"manifest_version": 2,
-	"minimum_chrome_version": "74",
-	"icons": {
-		"16": "icon/icon16.png",
-		"48": "icon/icon48.png",
-		"128": "icon/icon128.png"
-	},
-	"permissions": ["storage", "contextMenus", "activeTab", "tabs"],
-	"optional_permissions": ["*://*/*"],
-	"options_ui": {
-		"chrome_style": true,
-		"page": "options.html"
-	},
-	"browser_action": {
-		"default_icon": "icon/icon16.png"
-	},
-	"background": {
-		"persistent": false,
-		"scripts": [
-			"browser-polyfill.min.js",
-			"background.js"
-		]
-	},
-	"content_scripts": [
-		{
-			"js": ["plantuml-extension.js"],
-			"matches": [
-				"https://github.com/*"
-			]
-		}
-	],
-	"web_accessible_resources": []
+  "name": "PlantUML Extension",
+  "version": "0.0.0",
+  "description": "Show graphs and diagrams rendered by PlantUML.",
+  "homepage_url": "https://github.com/wicksome/plantuml-extension",
+  "manifest_version": 2,
+  "minimum_chrome_version": "74",
+  "icons": {
+	"16": "icon/icon16.png",
+	"48": "icon/icon48.png",
+	"128": "icon/icon128.png"
+  },
+  "permissions": [
+	"storage",
+	"contextMenus",
+	"activeTab",
+	"tabs"
+  ],
+  "optional_permissions": [
+	"*://*/*"
+  ],
+  "options_ui": {
+	"chrome_style": true,
+	"page": "options.html"
+  },
+  "browser_action": {
+	"default_icon": "icon/icon16.png"
+  },
+  "background": {
+	"persistent": false,
+	"scripts": [
+	  "browser-polyfill.min.js",
+	  "background.js"
+	]
+  },
+  "content_scripts": [
+	{
+	  "js": [
+		"plantuml-extension.js"
+	  ],
+	  "matches": [
+		"https://github.com/*"
+	  ]
+	}
+  ],
+  "web_accessible_resources": []
 }

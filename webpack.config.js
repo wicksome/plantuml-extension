@@ -1,5 +1,4 @@
 const path = require('path')
-const SizePlugin = require('size-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 
@@ -25,7 +24,6 @@ module.exports = {
 		],
 	},
 	plugins: [
-		new SizePlugin(),
 		new CopyWebpackPlugin({
 			patterns: [
 				{
