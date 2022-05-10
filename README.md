@@ -92,9 +92,9 @@ Configuring "Base URL" on the setting page, delegates image generation to this s
 
 Examples.
 
-* `https://www.plantuml.com/plantuml/img/` (default)
+* `https://www.plantuml.com/plantuml/png/` (default)
 * `https://www.plantuml.com/plantuml/svg/`
-* `https://any-plantuml-server.example.com:8080/img/`
+* `https://any-plantuml-server.example.com:8080/png/`
 
 Also you can run PlantUML server in localhost using Docker as following command:
 
@@ -102,7 +102,7 @@ Also you can run PlantUML server in localhost using Docker as following command:
 $ docker run -d -p 8080:8080 plantuml/plantuml-server
 ```
 
-And you can specify `http://localhost:8080/img/` as *Base URL*.
+And you can specify `http://localhost:8080/png/` as *Base URL*.
 
 Note: To avoid mixed-content, if the *Base URL* is not HTTPS scheme,
 generated image is converted to [DATA URI](https://tools.ietf.org/html/rfc2397).

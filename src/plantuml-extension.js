@@ -2,7 +2,7 @@ import optionsStorage from './options-storage'
 import { Profiles, URL_REGEX } from './constants'
 import { createImgElement } from './encoder/utils'
 
-const DEFAULT_SERVER = 'https://www.plantuml.com/plantuml/img/'
+const DEFAULT_SERVER = 'https://www.plantuml.com/plantuml/png/'
 
 function getBackgroundColor(element, pseudoElt) {
 	if (element === null) return ''

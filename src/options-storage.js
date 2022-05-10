@@ -1,7 +1,7 @@
 import OptionsSyncPerDomain from 'webext-options-sync-per-domain'
 export const perDomainOptions = new OptionsSyncPerDomain({
 	defaults: {
-		baseUrl: 'https://www.plantuml.com/plantuml/img/',
+		baseUrl: 'https://www.plantuml.com/plantuml/png/',
 		profile: 'github'
 	},
 	migrations: [OptionsSyncPerDomain.migrations.removeUnused],
