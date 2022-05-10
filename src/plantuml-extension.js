@@ -85,7 +85,7 @@ function onLoadAction(profile, baseUrl) {
 
 	if (umlElements.length === 0) return
 
-	console.log(`Count of elements for rendering: ${umlElements.length}`)
+	console.log(`[plantuml] Count of target code blocks to render: ${umlElements.length}`)
 
 	umlElements.forEach((umlElem) => {
 		umlElem.dataset.rendering = true
@@ -125,8 +125,8 @@ function run({ baseUrl, profile }) {
 
 const init = async () => {
 	const options = await optionsStorage.getAll()
-	console.log(window.location.href)
-	console.log("options", options)
+	console.log("[plantuml] window.location.href:", window.location.href)
+	console.log("[plantuml] extension option:", options)
 
 	const observer = new MutationObserver(() => {
 		const siteProfile = Profiles[options.profile]
