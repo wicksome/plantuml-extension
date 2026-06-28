@@ -1,3 +1,8 @@
+> [!NOTE]
+> This repository is archived since an official extension is now available at https://github.com/plantuml/plantuml-for-github.
+
+---
+
 #  PlantUML Extension
 
 > This is a Google Chrome extension that replace PlantUML code blocks into preview images.
