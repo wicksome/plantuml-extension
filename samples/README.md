@@ -1,6 +1,6 @@
 # PlantUML samples
 
-```
+```puml
 @startuml
 skinparam defaultTextAlignment center
 skinparam monochrome true
@@ -46,7 +46,7 @@ center footer © CustomCompany Corp. All Rights Reserved.
 @enduml
 ```
 
-```
+```puml
 @startuml
 skinparam defaultTextAlignment center
 skinparam monochrome true
@@ -108,7 +108,7 @@ internet -[hidden]down- network
 ---
 
 
-```
+```puml
 @startuml
 ' skinparam monochrome true
 hide stereotype
